@@ -4,137 +4,156 @@
     <home-swiper :banners="banners"></home-swiper>
     <recommend-view :recommends="recommends"></recommend-view>
     <feature-view></feature-view>
-    <ul>
-      <li>1</li>
-      <li>2</li>
-      <li>3</li>
-      <li>4</li>
-      <li>5</li>
-      <li>6</li>
-      <li>7</li>
-      <li>8</li>
-      <li>9</li>
-      <li>10</li>
-      <li>11</li>
-      <li>12</li>
-      <li>13</li>
-      <li>14</li>
-      <li>15</li>
-      <li>16</li>
-      <li>17</li>
-      <li>18</li>
-      <li>19</li>
-      <li>20</li>
-      <li>21</li>
-      <li>22</li>
-      <li>23</li>
-      <li>24</li>
-      <li>25</li>
-      <li>26</li>
-      <li>27</li>
-      <li>28</li>
-      <li>29</li>
-      <li>30</li>
-      <li>31</li>
-      <li>32</li>
-      <li>33</li>
-      <li>34</li>
-      <li>35</li>
-      <li>36</li>
-      <li>37</li>
-      <li>38</li>
-      <li>39</li>
-      <li>40</li>
-      <li>41</li>
-      <li>42</li>
-      <li>43</li>
-      <li>44</li>
-      <li>45</li>
-      <li>46</li>
-      <li>47</li>
-      <li>48</li>
-      <li>49</li>
-      <li>50</li>
-      <li>51</li>
-      <li>52</li>
-      <li>53</li>
-      <li>54</li>
-      <li>55</li>
-      <li>56</li>
-      <li>57</li>
-      <li>58</li>
-      <li>59</li>
-      <li>60</li>
-      <li>61</li>
-      <li>62</li>
-      <li>63</li>
-      <li>64</li>
-      <li>65</li>
-      <li>66</li>
-      <li>67</li>
-      <li>68</li>
-      <li>69</li>
-      <li>70</li>
-      <li>71</li>
-      <li>72</li>
-      <li>73</li>
-      <li>74</li>
-      <li>75</li>
-      <li>76</li>
-      <li>77</li>
-      <li>78</li>
-      <li>79</li>
-      <li>80</li>
-      <li>81</li>
-      <li>82</li>
-      <li>83</li>
-      <li>84</li>
-      <li>85</li>
-      <li>86</li>
-      <li>87</li>
-      <li>88</li>
-      <li>89</li>
-      <li>90</li>
-      <li>91</li>
-      <li>92</li>
-      <li>93</li>
-      <li>94</li>
-      <li>95</li>
-      <li>96</li>
-      <li>97</li>
-      <li>98</li>
-      <li>99</li>
-      <li>100</li>
-    </ul>
+    <tab-control
+      class="tab-control"
+      :titles="['流行', '新款', '精选']"
+    ></tab-control>
+    <goods-list :goods="goods"></goods-list>
   </div>
 </template>
 
 <script>
-import NavBar from "@/components/common/navbar/NavBar";
 import HomeSwiper from "./childComps/HomeSwiper.vue";
 import RecommendView from "./childComps/RecommendView.vue";
-import { getHomeMultidata } from "@/network/home.js";
 import FeatureView from "./childComps/FeatureView";
+
+import NavBar from "@/components/common/navbar/NavBar";
+import TabControl from "@/components/content/tabControl/TabControl.vue";
+import GoodsList from "@/components/content/goods/GoodsList.vue";
+
+import { getHomeMultidata, getHomeGoods } from "@/network/home.js";
+
 export default {
   name: "Home",
   data() {
     return {
       banners: [],
       recommends: [],
+      goods: {
+        /* pop: { page: 0, list: [] },
+        new: { page: 0, list: [] },
+        sell: { page: 0, list: [] }, */
+        aCount: {
+          a1: {
+            name: "001",
+            img: "https://z3.ax1x.com/2021/05/28/2F1qUS.png",
+            price: "$199.00",
+            cfay: 10000,
+            href: "https://space.bilibili.com/108279272?spm_id_from=333.788.0.0",
+          },
+          a2: {
+            name: "002",
+            img: "https://z3.ax1x.com/2021/05/28/2F1qUS.png",
+            price: "$299.00",
+            cfay: 10000,
+            href: "https://space.bilibili.com/108279272?spm_id_from=333.788.0.0",
+          },
+          a3: {
+            name: "003",
+            img: "https://z3.ax1x.com/2021/05/28/2F1qUS.png",
+            price: "$399.00",
+            cfay: 10000,
+            href: "https://space.bilibili.com/108279272?spm_id_from=333.788.0.0",
+          },
+          a4: {
+            name: "004",
+            img: "https://z3.ax1x.com/2021/05/28/2F1qUS.png",
+            price: "$499.00",
+            cfay: 10000,
+            href: "https://space.bilibili.com/108279272?spm_id_from=333.788.0.0",
+          },
+          a5: {
+            name: "005",
+            img: "https://z3.ax1x.com/2021/05/28/2F1qUS.png",
+            price: "$599.00",
+            cfay: 10000,
+            href: "https://space.bilibili.com/108279272?spm_id_from=333.788.0.0",
+          },
+          a6: {
+            name: "006",
+            img: "https://z3.ax1x.com/2021/05/28/2F1qUS.png",
+            price: "$699.00",
+            cfay: 10000,
+            href: "https://space.bilibili.com/108279272?spm_id_from=333.788.0.0",
+          },
+          a7: {
+            name: "007",
+            img: "https://z3.ax1x.com/2021/05/28/2F1qUS.png",
+            price: "$799.00",
+            cfay: 10000,
+            href: "https://space.bilibili.com/108279272?spm_id_from=333.788.0.0",
+          },
+          a8: {
+            name: "008",
+            img: "https://z3.ax1x.com/2021/05/28/2F1qUS.png",
+            price: "$899.00",
+            cfay: 10000,
+            href: "https://space.bilibili.com/108279272?spm_id_from=333.788.0.0",
+          },
+          a9: {
+            name: "009",
+            img: "https://z3.ax1x.com/2021/05/28/2F1qUS.png",
+            price: "$999.00",
+            cfay: 10000,
+            href: "https://space.bilibili.com/108279272?spm_id_from=333.788.0.0",
+          },
+          a10: {
+            name: "010",
+            img: "https://z3.ax1x.com/2021/05/28/2F1qUS.png",
+            price: "$1099.00",
+            cfay: 10000,
+            href: "https://space.bilibili.com/108279272?spm_id_from=333.788.0.0",
+          },
+          a11: {
+            name: "011",
+            img: "https://z3.ax1x.com/2021/05/28/2F1qUS.png",
+            price: "$1199.00",
+            cfay: 10000,
+            href: "https://space.bilibili.com/108279272?spm_id_from=333.788.0.0",
+          },
+          a12: {
+            name: "012",
+            img: "https://z3.ax1x.com/2021/05/28/2F1qUS.png",
+            price: "$1299.00",
+            cfay: 10000,
+            href: "https://space.bilibili.com/108279272?spm_id_from=333.788.0.0",
+          },
+        },
+      },
     };
   },
   components: {
-    NavBar,
     HomeSwiper,
     RecommendView,
     FeatureView,
+    NavBar,
+    TabControl,
+    GoodsList,
   },
   created() {
     // 在组件创建完成就发送请求
-    getHomeMultidata().then((res) => {
-      this.banners = res.data.banner.list;
-      this.recommends = res.data.recommend.list;
-    });
+    this.getHomeMultidata();
+    // 请求商品数据
+    this.getHomeGoods("pop");
+    this.getHomeGoods("new");
+    this.getHomeGoods("sell");
+  },
+  methods: {
+    getHomeMultidata() {
+      getHomeMultidata().then((res) => {
+        this.banners = res.data.banner.list;
+        this.recommends = res.data.recommend.list;
+      });
+    },
+    getHomeGoods(type) {
+      // 取出原来的page+1,每次请求就是下一页的数据了
+      const page = this.goods[type].page + 1;
+      getHomeGoods(type, page).then((res) => {
+        console.log(res);
+        this.goods[type].list.push(...res.data.list);
+        this.goods[type].page += 1;
+      });
+    },
   },
 };
 </script>
@@ -152,5 +171,23 @@ export default {
   right: 0;
   top: 0;
   z-index: 9;
+}
+
+.tab-control {
+  position: sticky;
+  background-color: #fff;
+  top: 44px;
+}
+
+ul li {
+  height: 50px;
+  border-radius: 5px;
+  background-color: tomato;
+  margin: 0 10px;
+  margin-bottom: 5px;
+  line-height: 50px;
+  color: white;
+  font-weight: 100;
+  text-indent: 1em;
 }
 </style>
