@@ -1,4 +1,12 @@
 // 公共的方法
-export function sum(num1, num2) {
-  return num1 + num2
+// 防抖函数
+export function
+  debounce(fun, delay) {
+  let timer = null;
+  return function (...args) {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(() => {
+      fun.apply(this, args);
+    }, delay);
+  };
 }

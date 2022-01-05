@@ -1,7 +1,7 @@
 <template>
   <div class="goods">
     <goods-list-item
-      v-for="item in goods.aCount"
+      v-for="item in goods"
       :key="item.index"
       :goods-item="item"
       class="gli"
@@ -21,9 +21,9 @@ export default {
   },
   props: {
     goods: {
-      type: Array,
+      type: Object,
       default() {
-        return [];
+        return {};
       },
     },
   },
@@ -36,8 +36,5 @@ export default {
   flex-wrap: wrap;
   justify-content: space-around;
   margin: 5px;
-}
-
-.gil {
 }
 </style>

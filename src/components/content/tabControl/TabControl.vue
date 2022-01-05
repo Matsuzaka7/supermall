@@ -32,6 +32,7 @@ export default {
   methods: {
     tabClick(index) {
       this.currentIndex = index;
+      this.$emit("tabClick", index);
     },
   },
 };
@@ -43,6 +44,7 @@ export default {
   display: flex;
   font-size: 14px;
   z-index: 10;
+  background-color: #fff;
 }
 .tab-control-item {
   flex: 1;
