@@ -320,6 +320,7 @@ export default {
       isShowBackTop: false,
       tabOffsetTop: 0,
       isTabFixed: false,
+      saveY: 0,
     };
   },
   components: {
@@ -350,7 +351,7 @@ export default {
     // this.getGoods("cCount");
   },
   mounted() {
-    const refresh = debounce(this.$refs.HomeScroll.refresh, 500);
+    const refresh = debounce(this.$refs.HomeScroll.refresh, 1000);
 
     // 监听图片图片加载完成
     this.$bus.$on("itemImageLoad", () => {
@@ -413,6 +414,14 @@ export default {
         this.goods[type].page += 1;
       });
     },
+  },
+  activated() {
+    this.$refs.HomeScroll.refresh();
+
+    this.$refs.HomeScroll.scrollTo(0, -this.saveY, 0);
+  },
+  deactivated() {
+    this.saveY = -this.$refs.HomeScroll.scroll.y;
   },
 };
 </script>

@@ -128,6 +128,5 @@ export default {
 .content {
   height: 300px;
   background-color: cornflowerblue;
-  overflow: hidden;
 }
 </style>

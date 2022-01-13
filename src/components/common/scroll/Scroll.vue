@@ -29,7 +29,7 @@ export default {
     // 通过refs拿到的是指定的组件或标签
     this.scroll = new BScroll(this.$refs.wrapper, {
       click: true,
-      // observeDOM: true,
+      observeDOM: true,
       probeType: this.probeType,
       pullUpLoad: this.pullUpLoad,
     });
